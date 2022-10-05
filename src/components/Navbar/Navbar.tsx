@@ -2,7 +2,7 @@ import {
   AccountCircle,
   Brightness4,
   Brightness7,
-  Menu
+  Menu,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -11,7 +11,7 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  useMediaQuery
+  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
@@ -45,36 +45,33 @@ const Navbar = () => {
           >
             {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          {!isMobile && 'Search...'}
+          {!isMobile && "Search..."}
           <div>
-            { !isAuthenticated ? (
-              <Button 
-                color="inherit"
-                onClick={() => {}}
-              >
+            {!isAuthenticated ? (
+              <Button color="inherit" onClick={() => {}}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
-                <Button
-                  color="inherit"
-                  component={Link}
-                  to={`/profile/:id`}
-                  className={classes.linkButton}
-                  onClick={() => {}}
-                >
-                  {!isMobile && <>My Movies &nbsp;</>}
-                  <Avatar 
-                    style={{ 
-                      width: 30,
-                      height: 30
-                     }}
-                     alt="Profile"
-                     src='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png'
-                  />
-                </Button>
+              <Button
+                color="inherit"
+                component={Link}
+                to={`/profile/:id`}
+                className={classes.linkButton}
+                onClick={() => {}}
+              >
+                {!isMobile && <>My Movies &nbsp;</>}
+                <Avatar
+                  style={{
+                    width: 30,
+                    height: 30,
+                  }}
+                  alt="Profile"
+                  src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                />
+              </Button>
             )}
           </div>
-          {isMobile && 'search...'}
+          {isMobile && "search..."}
         </Toolbar>
       </AppBar>
     </>
