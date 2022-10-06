@@ -1,9 +1,12 @@
 import { makeStyles } from "tss-react/mui";
 
+const drawerWidth = 240;
+
 const useStyles = makeStyles()((theme) => {
   return {
     navbar: {
-      background: "linear-gradient(.25turn,#fff, #dee0f7);",
+      // background: "linear-gradient(to right,#fff,#fff, #ffe6e6);",
+      backgroundColor:'#ff9999'
     },
     toolbar: {
       height: "80px",
@@ -21,6 +24,21 @@ const useStyles = makeStyles()((theme) => {
         display: "none",
       },
     },
+    drawer: {
+      [theme.breakpoints.up("sm")]: {
+        width: drawerWidth,
+        flexShrink:0
+      },
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    linkButton: {
+      '&:hover': {
+        color: 'white !important',
+        textDecoration: 'none'
+      }
+    }
   };
 });
 
