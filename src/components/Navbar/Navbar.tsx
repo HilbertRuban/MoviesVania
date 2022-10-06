@@ -2,7 +2,7 @@ import {
   AccountCircle,
   Brightness4,
   Brightness7,
-  Menu
+  Menu,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -11,7 +11,7 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  useMediaQuery
+  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
@@ -33,7 +33,7 @@ const Navbar = () => {
               color="inherit"
               style={{ outline: "none", color: "black" }}
               edge="start"
-              onClick={() => setMobileOpen(prevMobileOpen => !prevMobileOpen)}
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.menuButton}
             >
               <Menu />
@@ -81,14 +81,18 @@ const Navbar = () => {
           {isMobile ? (
             <Drawer
               open={mobileOpen}
-              onClose={() => setMobileOpen(prevMobileOpen => !prevMobileOpen)}
+              onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
             >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
-            <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open >
+            <Drawer
+              classes={{ paper: classes.drawerPaper }}
+              variant="permanent"
+              open
+            >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           )}
