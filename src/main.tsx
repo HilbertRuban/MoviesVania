@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import "./index.css";
 
-import store from './app/store'
+import store from './app/store';
 
 const theme = createTheme({});
 
