@@ -2,7 +2,7 @@ import {
   AccountCircle,
   Brightness4,
   Brightness7,
-  Menu,
+  Menu
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -11,7 +11,7 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  useMediaQuery,
+  useMediaQuery
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";

@@ -7,7 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
