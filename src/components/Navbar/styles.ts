@@ -9,7 +9,7 @@ const useStyles = makeStyles()((theme) => {
       backgroundColor: "#ff9999",
     },
     toolbar: {
-      height: "80px",
+      // height: "50px",
       display: "flex",
       justifyContent: "space-between",
       marginLeft: "240px",
