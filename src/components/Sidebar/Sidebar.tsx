@@ -7,58 +7,24 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import { categories } from "../../constants/constants";
 import { ISidebarProps } from "../../Interface/Pages/Sidebar/Sidebar";
 import useStyles from "./styles";
-const categories = [
-  {
-    label: "Popular",
-    value: "popular",
-  },
-  {
-    label: "Top Rated",
-    value: "top_rated",
-  },
-  {
-    label: "Upcoming",
-    value: "upcoming",
-  },
-];
 
-const demoCategories = [
-  {
-    label: "Action",
-    value: "action",
-  },
-  {
-    label: "Adventure",
-    value: "adventure",
-  },
-  {
-    label: "Anime",
-    value: "anime",
-  },
-  {
-    label: "Horror",
-    value: "horror",
-  },
-  {
-    label: "Comedy",
-    value: "comedy",
-  },
-];
+import { useGetGenresQuery } from "../../services/TMDB";
 
 const redLogo =
   "https://fontmeme.com/permalink/221006/be5948abafa4fb7e3f0e91e946763d28.png";
-// const blueLogo =
-//   "https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png";
 
 const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
   const theme = useTheme();
   const { classes } = useStyles();
+  const { data, isFetching } = useGetGenresQuery();
+  // console.log(data, 'genres');
   return (
     <>
       <Link to="/" className={classes.imageLink}>
@@ -82,16 +48,22 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
 
       <List>
         <ListSubheader>Genres</ListSubheader>
-        {demoCategories.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
-              {/* <ListItemIcon>
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress />
+          </Box>
+        ) : (
+          data?.genres?.map(({ id, name }: { id: number; name: string }) => (
+            <Link key={name} className={classes.links} to="/">
+              <ListItem onClick={() => {}} button>
+                {/* <ListItemIcon>
                 <img src={redLogo} className={classes.genreImage} width={130} height={30} />
               </ListItemIcon> */}
-              <ListItemText primary={label} />
-            </ListItem>
-          </Link>
-        ))}
+                <ListItemText primary={name} />
+              </ListItem>
+            </Link>
+          ))
+        )}
       </List>
     </>
   );
