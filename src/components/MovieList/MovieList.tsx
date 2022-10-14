@@ -1,6 +1,9 @@
 import { Grid } from "@mui/material";
-import { IMovies, IMoviesProps } from '../../Interface/Pages/MovieList/MovieList'
 import { Movie } from "..";
+import {
+  IMovies,
+  IMoviesProps,
+} from "../../Interface/Pages/MovieList/MovieList";
 import useStyles from "./styles";
 type Movies = string | number | boolean;
 
