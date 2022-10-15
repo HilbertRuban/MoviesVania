@@ -16,7 +16,7 @@ const useStyles = makeStyles()((theme) => {
       textDecoration: "none",
     },
     genreImage: {
-      filter: theme.palette.mode === "dark" ? "dark" : "invert(1)",
+      //
     },
   };
 });

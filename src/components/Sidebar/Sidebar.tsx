@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import { genreIcons } from "../../assets/genres";
 import { categories } from "../../constants/constants";
 import { ISidebarProps } from "../../Interface/Pages/Sidebar/Sidebar";
 import useStyles from "./styles";
@@ -36,9 +37,14 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
             <ListItem onClick={() => {}} button>
-              {/* <ListItemIcon>
-                <img src={redLogo} className={classes.genreImage} width={130} height={30} />
-              </ListItemIcon> */}
+              <ListItemIcon>
+                <img
+                  src={genreIcons[label.toLocaleLowerCase()]}
+                  className={classes.genreImage}
+                  width={30}
+                  height={30}
+                />
+              </ListItemIcon>
               <ListItemText primary={label} />
             </ListItem>
           </Link>
@@ -56,9 +62,14 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
           data?.genres?.map(({ id, name }: { id: number; name: string }) => (
             <Link key={name} className={classes.links} to="/">
               <ListItem onClick={() => {}} button>
-                {/* <ListItemIcon>
-                <img src={redLogo} className={classes.genreImage} width={130} height={30} />
-              </ListItemIcon> */}
+                <ListItemIcon>
+                  <img
+                    src={genreIcons[name.toLocaleLowerCase()]}
+                    className={classes.genreImage}
+                    width={30}
+                    height={30}
+                  />
+                </ListItemIcon>
                 <ListItemText primary={name} />
               </ListItem>
             </Link>
