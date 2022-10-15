@@ -48,5 +48,3 @@ export const genreIcons: IGenreIcons = {
   "top rated": topRated,
   upcoming,
 };
-
-// export default  genreIcons

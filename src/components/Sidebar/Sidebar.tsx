@@ -11,10 +11,13 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { genreIcons } from "../../assets/genres";
 import { categories } from "../../constants/constants";
 import { ISidebarProps } from "../../Interface/Pages/Sidebar/Sidebar";
 import useStyles from "./styles";
+
+import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 
 import { useGetGenresQuery } from "../../services/TMDB";
 
@@ -22,10 +25,15 @@ const redLogo =
   "https://fontmeme.com/permalink/221006/be5948abafa4fb7e3f0e91e946763d28.png";
 
 const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
+  const { genreIdOrCategoryName } = useAppSelector(
+    (state) => state.genreOrCategoryReducer
+  );
   const theme = useTheme();
   const { classes } = useStyles();
   const { data, isFetching } = useGetGenresQuery();
+  const dispatch = useAppDispatch();
   // console.log(data, 'genres');
+  // console.log(genreIdOrCategoryName,'names');
   return (
     <>
       <Link to="/" className={classes.imageLink}>
@@ -36,7 +44,10 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItem
+              onClick={() => dispatch(selectGenreOrCategory(value))}
+              button
+            >
               <ListItemIcon>
                 <img
                   src={genreIcons[label.toLocaleLowerCase()]}
@@ -61,7 +72,10 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
         ) : (
           data?.genres?.map(({ id, name }: { id: number; name: string }) => (
             <Link key={name} className={classes.links} to="/">
-              <ListItem onClick={() => {}} button>
+              <ListItem
+                onClick={() => dispatch(selectGenreOrCategory(id))}
+                button
+              >
                 <ListItemIcon>
                   <img
                     src={genreIcons[name.toLocaleLowerCase()]}

@@ -4,14 +4,17 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
 import { MovieList } from "..";
 import { useGetMoviesQuery } from "../../services/TMDB";
 
 const Movies = () => {
-  const { data, error, isFetching } = useGetMoviesQuery();
+  const [page, setPage] = useState(1);
+  const  {genreIdOrCategoryName}  = useAppSelector(state => state.genreOrCategoryReducer);
+  // console.log(genreIdOrCategoryName,'names');
+  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page });
   let movies = data?.results;
   // console.log(movies,'movies data');
 
