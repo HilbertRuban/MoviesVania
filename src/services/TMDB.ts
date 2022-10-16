@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ITmdbGetMoviesQueryProps } from "../Interface/Pages/TmdbQuery/TmdbQuery";
-// const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
-const tmdbApiKey = "a4481d6a9519027f871976f1695ad05d";
+const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
 
 export const tmdbApi = createApi({
   reducerPath: "tmdbApi",
@@ -19,7 +18,7 @@ export const tmdbApi = createApi({
         searchQuery,
       }: ITmdbGetMoviesQueryProps) => {
         // * GET MOVIES BY SEARCH
-        if (searchQuery !== '') {
+        if (searchQuery) {
           return `/search/movie?query=${searchQuery}&page=${page}&api_key=${tmdbApiKey}`;
         }
         // * GET MOVIES BY CATEGORY
@@ -41,7 +40,13 @@ export const tmdbApi = createApi({
         return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
       },
     }),
+    // * GET MOVIE
+    getMovie: builder.query({
+      query: (id) =>
+        `/movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`,
+    }),
   }),
 });
 
-export const { useGetGenresQuery, useGetMoviesQuery } = tmdbApi;
+export const { useGetGenresQuery, useGetMoviesQuery, useGetMovieQuery } =
+  tmdbApi;

@@ -30,7 +30,7 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
   );
   const theme = useTheme();
   const { classes } = useStyles();
-  const { data, isFetching } = useGetGenresQuery();
+  const { data, isFetching } = useGetGenresQuery({});
   const dispatch = useAppDispatch();
   // console.log(data, 'genres');
   // console.log(genreIdOrCategoryName,'names');
@@ -45,10 +45,10 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
             <ListItem
-              onClick={() =>{
-                console.log('clicked')
-                dispatch(selectGenreOrCategory(value))}
-              } 
+              onClick={() => {
+                console.log("clicked");
+                dispatch(selectGenreOrCategory(value));
+              }}
               button
             >
               <ListItemIcon>
