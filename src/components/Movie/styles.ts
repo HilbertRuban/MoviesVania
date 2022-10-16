@@ -19,12 +19,12 @@ const useStyles = makeStyles()((theme) => {
     },
     image: {
       borderRadius: "20px",
-      opacity: ".8",
+      opacity: "1",
       height: "300px",
       marginBottom: "10px",
       transition: "all 0.5s",
       "&:hover": {
-        opacity: "1",
+        opacity: ".8",
         transform: "scale(1.05)",
       },
     },

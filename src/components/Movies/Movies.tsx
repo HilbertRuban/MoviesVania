@@ -5,16 +5,22 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 import { MovieList } from "..";
 import { useGetMoviesQuery } from "../../services/TMDB";
 
-const Movies = () => {
+const Movies = (): JSX.Element => {
   const [page, setPage] = useState(1);
-  const  {genreIdOrCategoryName}  = useAppSelector(state => state.genreOrCategoryReducer);
+  const { genreIdOrCategoryName, searchQuery } = useAppSelector(
+    (state) => state.genreOrCategoryReducer
+  );
   // console.log(genreIdOrCategoryName,'names');
-  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page });
+  const { data, error, isFetching } = useGetMoviesQuery({
+    genreIdOrCategoryName,
+    page,
+    searchQuery,
+  });
   let movies = data?.results;
   // console.log(movies,'movies data');
 
@@ -26,9 +32,15 @@ const Movies = () => {
     );
   }
 
-  if (!data.results.length) {
+  if (!movies?.length) {
     return (
-      <Box display="flex" alignItems="center" mt="20px">
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        color="gray"
+        mt="20px"
+      >
         <Typography variant="h4">
           No movies that match that name.
           <br />
@@ -38,7 +50,7 @@ const Movies = () => {
     );
   }
 
-  if (error) return "An error has occurred.";
+  if (error) return <>"An error has occurred."</>;
 
   return (
     <div>

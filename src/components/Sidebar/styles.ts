@@ -1,4 +1,3 @@
-import { generatePath } from "react-router-dom";
 import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => {
@@ -16,7 +15,7 @@ const useStyles = makeStyles()((theme) => {
       textDecoration: "none",
     },
     genreImage: {
-      //
+      filter: theme.palette.mode === "dark" ? "invert(1)" : "dark",
     },
   };
 });

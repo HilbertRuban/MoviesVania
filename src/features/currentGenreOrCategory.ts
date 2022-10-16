@@ -12,10 +12,15 @@ export const genreOrCategory = createSlice({
       state: InitialStateProps,
       action: PayloadAction<string | number>
     ) => {
+      console.log(1,'step in reducer');
       state.genreIdOrCategoryName = action.payload;
+      state.searchQuery = "";
+    },
+    searchMovie: (state: InitialStateProps, action: PayloadAction<string>) => {
+      state.searchQuery = action.payload;
     },
   },
 });
 
 export default genreOrCategory.reducer;
-export const { selectGenreOrCategory } = genreOrCategory.actions;
+export const { selectGenreOrCategory, searchMovie } = genreOrCategory.actions;

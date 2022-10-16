@@ -45,7 +45,10 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
             <ListItem
-              onClick={() => dispatch(selectGenreOrCategory(value))}
+              onClick={() =>{
+                console.log('clicked')
+                dispatch(selectGenreOrCategory(value))}
+              } 
               button
             >
               <ListItemIcon>
