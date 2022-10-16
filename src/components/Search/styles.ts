@@ -11,7 +11,7 @@ const useStyles = makeStyles()((theme) => {
     },
     input: {
       color: theme.palette.mode === "light" ? "black" : "light",
-      // filter: theme.palette.mode === 'light' ? 'invert(1)' : 'light',
+      filter: theme.palette.mode === "dark" ? "invert(1)" : "light",
       [theme.breakpoints.down("sm")]: {
         marginTop: "-10px",
         marginBottom: "10px",
