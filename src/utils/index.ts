@@ -29,7 +29,6 @@ export const createSessionId = async () => {
         request_token: token,
       });
       localStorage.setItem("session_id", session_id);
-      const sessionIdFromLocalStorage = localStorage.getItem("session_id");
       return session_id;
     } catch (error) {
       console.log(error);

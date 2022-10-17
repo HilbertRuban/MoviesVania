@@ -8,7 +8,6 @@ import {
   Remove,
   Theaters,
 } from "@mui/icons-material";
-import LanguageIcon from "@mui/icons-material/Language";
 import {
   Box,
   Button,
@@ -30,7 +29,12 @@ import {
   ICast,
   IMovieDetailGenre,
 } from "../../Interface/Pages/MovieDetail/MovieDetail";
-import { useGetMovieQuery } from "../../services/TMDB";
+import {
+  useGetMovieQuery,
+  useGetRecommendationsQuery,
+} from "../../services/TMDB";
+// import MovieList from "../MovieList/MovieList";
+import { MovieList } from "..";
 import useStyles from "./styles";
 
 const MovieDetail = (): JSX.Element => {
@@ -38,12 +42,17 @@ const MovieDetail = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { classes } = useStyles();
   const { data, isFetching, error } = useGetMovieQuery(id);
-
+  const { data: recommendations, isFetching: isRecommendationsFetching } =
+    useGetRecommendationsQuery({
+      list: "/recommendations",
+      movie_id: id,
+    });
   const isMovieFavorite = false;
   const isMovieWatchList = false;
 
   const addToFavorites = () => {};
   const addToWatchList = () => {};
+  // console.log(recommendations, "recommend");
 
   if (isFetching) {
     <Box display="flex" justifyContent="center" alignItems="center">
@@ -217,6 +226,16 @@ const MovieDetail = (): JSX.Element => {
             </Grid>
           </Box>
         </Grid>
+        <Box marginTop="2rem" width="100%">
+          <Typography sx={{ margin: "40px 0" }} variant="h4" align="center">
+            You might also like
+          </Typography>
+          {recommendations ? (
+            <MovieList movies={recommendations} numberOfMovies={12} />
+          ) : (
+            <Box>Sorry nothing was found</Box>
+          )}
+        </Box>
       </Grid>
     </>
   );

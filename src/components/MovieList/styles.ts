@@ -6,7 +6,7 @@ const useStyles = makeStyles()((theme) => {
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "space-between",
-      overflow: "auto",
+      overflowX: "hidden",
       [theme.breakpoints.down("sm")]: {
         justifyContent: "center",
       },

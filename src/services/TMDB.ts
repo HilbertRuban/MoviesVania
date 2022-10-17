@@ -1,5 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ITmdbGetMoviesQueryProps } from "../Interface/Pages/TmdbQuery/TmdbQuery";
+import {
+  ITmdbGetMoviesQueryProps,
+  ITmdbGetRecommendationsQueryProps,
+} from "../Interface/Pages/TmdbQuery/TmdbQuery";
 const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
 export const tmdbApi = createApi({
   reducerPath: "tmdbApi",
@@ -45,8 +48,17 @@ export const tmdbApi = createApi({
       query: (id) =>
         `/movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`,
     }),
+    //* GET USER SPECIFIC LIST
+    getRecommendations: builder.query({
+      query: ({ list, movie_id }: ITmdbGetRecommendationsQueryProps) =>
+        `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
+    }),
   }),
 });
 
-export const { useGetGenresQuery, useGetMoviesQuery, useGetMovieQuery } =
-  tmdbApi;
+export const {
+  useGetGenresQuery,
+  useGetMoviesQuery,
+  useGetMovieQuery,
+  useGetRecommendationsQuery,
+} = tmdbApi;

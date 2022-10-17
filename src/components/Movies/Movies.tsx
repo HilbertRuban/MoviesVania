@@ -21,7 +21,6 @@ const Movies = (): JSX.Element => {
     page,
     searchQuery,
   });
-  let movies = data?.results;
   // console.log(movies,'movies data');
 
   if (isFetching) {
@@ -32,7 +31,7 @@ const Movies = (): JSX.Element => {
     );
   }
 
-  if (!movies?.length) {
+  if (!data?.results?.length) {
     return (
       <Box
         display="flex"
@@ -54,7 +53,7 @@ const Movies = (): JSX.Element => {
 
   return (
     <div>
-      <MovieList movies={movies} />
+      <MovieList movies={data} />
     </div>
   );
 };

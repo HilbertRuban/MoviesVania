@@ -3,3 +3,7 @@ export interface ITmdbGetMoviesQueryProps {
   page?: number;
   searchQuery?: string;
 }
+export interface ITmdbGetRecommendationsQueryProps {
+  movie_id?: string | number;
+  list?: string;
+}
