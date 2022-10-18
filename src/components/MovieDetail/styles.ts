@@ -43,11 +43,11 @@ const useStyles = makeStyles()((theme) => {
     buttonFW: {
       [theme.breakpoints.down("md")]: {
         position: "relative",
-        top: "220px",
+        top: "290px",
       },
       [theme.breakpoints.down("sm")]: {
         position: "relative",
-        top: "320px",
+        top: "350px",
       },
     },
     movieTitle: {
@@ -122,6 +122,19 @@ const useStyles = makeStyles()((theme) => {
       fontSize: "35px",
       "&:hover": {
         cursor: "pointer",
+      },
+    },
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    video: {
+      width: "50%",
+      height: "50%",
+      [theme.breakpoints.down("sm")]: {
+        width: "90%",
+        height: "50%",
       },
     },
   };

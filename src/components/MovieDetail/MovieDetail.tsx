@@ -34,11 +34,13 @@ import {
   useGetRecommendationsQuery,
 } from "../../services/TMDB";
 // import MovieList from "../MovieList/MovieList";
+import { useState } from "react";
 import { MovieList } from "..";
 import useStyles from "./styles";
 
 const MovieDetail = (): JSX.Element => {
   const { id } = useParams();
+  const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const { classes } = useStyles();
   const { data, isFetching, error } = useGetMovieQuery(id);
@@ -148,7 +150,7 @@ const MovieDetail = (): JSX.Element => {
               </Typography>
               <Tooltip disableTouchListener title="Watch Trailer">
                 <MovieIcon
-                  onClick={() => console.log("clicked")}
+                  onClick={() => setOpen(true)}
                   className={classes.movie}
                 />
               </Tooltip>
@@ -230,12 +232,31 @@ const MovieDetail = (): JSX.Element => {
           <Typography sx={{ margin: "40px 0" }} variant="h4" align="center">
             You might also like
           </Typography>
-          {recommendations ? (
+          {recommendations?.results.length ? (
             <MovieList movies={recommendations} numberOfMovies={12} />
           ) : (
             <Box>Sorry nothing was found</Box>
           )}
         </Box>
+        {/* {console.log(data?.videos?.results?.[0].key, "data of movie")} */}
+        <Modal
+          closeAfterTransition
+          className={classes.modal}
+          open={open}
+          onClose={() => setOpen(false)}
+        >
+          <>
+            {data?.videos?.results?.length > 0 && (
+              <iframe
+                frameBorder="0"
+                className={classes.video}
+                title="Trailer"
+                src={`https://www.youtube.com/embed/${data?.videos?.results?.[0].key}`}
+                allow="autoplay"
+              />
+            )}
+          </>
+        </Modal>
       </Grid>
     </>
   );
