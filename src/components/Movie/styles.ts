@@ -22,9 +22,8 @@ const useStyles = makeStyles()((theme) => {
       opacity: "1",
       height: "300px",
       marginBottom: "10px",
-      transition: "all 0.5s",
+      transition: "all 0.3s",
       "&:hover": {
-        opacity: ".8",
         transform: "scale(1.05)",
       },
     },

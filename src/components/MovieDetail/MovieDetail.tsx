@@ -21,7 +21,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { genreIcons } from "../../assets/genres";
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
@@ -42,6 +42,7 @@ const MovieDetail = (): JSX.Element => {
   const { id } = useParams();
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { classes } = useStyles();
   const { data, isFetching, error } = useGetMovieQuery(id);
   const { data: recommendations, isFetching: isRecommendationsFetching } =
@@ -71,8 +72,7 @@ const MovieDetail = (): JSX.Element => {
     <>
       <ButtonGroup variant="contained" sx={{ marginBottom: "10px" }}>
         <Button
-          component={Link}
-          to="/"
+          onClick={() => navigate(-1)}
           endIcon={<ArrowBack />}
           sx={{
             borderColor: "primary.main",
@@ -112,7 +112,7 @@ const MovieDetail = (): JSX.Element => {
               <Button
                 onClick={addToWatchList}
                 endIcon={isMovieWatchList ? <Remove /> : <PlusOne />}
-                className={classes.watchlist}
+                className={classes.watchList}
               >
                 Watchlist
               </Button>

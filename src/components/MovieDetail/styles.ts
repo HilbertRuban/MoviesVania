@@ -111,7 +111,7 @@ const useStyles = makeStyles()((theme) => {
       display: "flex",
       gap: "10px",
     },
-    watchlist: {
+    watchList: {
       backgroundColor: "#ff9999 !important",
       "&:hover": {
         opacity: ".8",

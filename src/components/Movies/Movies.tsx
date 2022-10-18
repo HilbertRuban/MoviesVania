@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
-import { MovieList } from "..";
+import { MovieList, Pagination } from "..";
 import { useGetMoviesQuery } from "../../services/TMDB";
 
 const Movies = (): JSX.Element => {
@@ -22,7 +22,7 @@ const Movies = (): JSX.Element => {
     searchQuery,
   });
   // console.log(movies,'movies data');
-
+  const totalPage = data?.total_page;
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
@@ -54,6 +54,11 @@ const Movies = (): JSX.Element => {
   return (
     <div>
       <MovieList movies={data} />
+      <Pagination
+        currentPage={page}
+        setPage={setPage}
+        totalPage={totalPage}
+      />
     </div>
   );
 };
