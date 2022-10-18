@@ -71,6 +71,8 @@ const MovieDetail = (): JSX.Element => {
     <>
       <ButtonGroup variant="contained" sx={{ marginBottom: "10px" }}>
         <Button
+          component={Link}
+          to="/"
           endIcon={<ArrowBack />}
           sx={{
             borderColor: "primary.main",
@@ -78,8 +80,6 @@ const MovieDetail = (): JSX.Element => {
           // className={classes.buttonFavorite}
         >
           <Typography
-            component={Link}
-            to="/"
             color="inherit"
             variant="subtitle2"
             style={{ textDecoration: "none" }}
