@@ -53,7 +53,6 @@ const Navbar = () => {
           );
           // console.log(userData, "creating new session id");
           dispatch(setUser(userData));
-          window.location.href = "/";
         }
       }
     };

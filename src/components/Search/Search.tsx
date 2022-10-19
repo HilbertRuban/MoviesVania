@@ -8,6 +8,7 @@ import useStyles from "./styles";
 const Search = () => {
   const [query, setQuery] = useState("");
   const dispatch = useAppDispatch();
+  const location = useLocation();
   const { classes } = useStyles();
   const handleKeyPress = (e: React.KeyboardEventHandler<HTMLDivElement>): void => {
     // console.log(e.key,'eeeeeeeee');
@@ -15,6 +16,7 @@ const Search = () => {
       dispatch(searchMovie(query))
     }
   };
+  if (location.pathname !== '/') return null;
   return (
     <div className={classes.searchContainer}>
       <TextField

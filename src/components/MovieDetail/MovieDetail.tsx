@@ -143,10 +143,7 @@ const MovieDetail = (): JSX.Element => {
                 </Typography>
               </Box>
               <Typography variant="h6" align="center">
-                {data?.runtime}min{" "}
-                {data?.spoken_languages.length > 0
-                  ? ` / ${data?.spoken_languages[0]?.english_name}`
-                  : ""}
+                {data?.runtime}min | Language: {data?.spoken_languages[0]?.english_name}
               </Typography>
               <Tooltip disableTouchListener title="Watch Trailer">
                 <MovieIcon

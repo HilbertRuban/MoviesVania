@@ -13,6 +13,7 @@ const App = () => {
         <div className={classes.toolbar}/>
         <Routes>
           <Route path="/" element={<Movies />} />
+          <Route path="/approved" element={<Movies />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/actors/:id" element={<Actors />} />
