@@ -1,4 +1,4 @@
-export const categories: { label: string; value: string }[] = [
+export const categories = [
   {
     label: "Popular",
     value: "popular",

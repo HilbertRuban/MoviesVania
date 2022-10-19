@@ -4,6 +4,7 @@ import {
   ITmdbGetRecommendationsQueryProps,
 } from "../Interface/Pages/TmdbQuery/TmdbQuery";
 const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
+
 export const tmdbApi = createApi({
   reducerPath: "tmdbApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3" }),
@@ -53,13 +54,17 @@ export const tmdbApi = createApi({
       query: ({ list, movie_id }: ITmdbGetRecommendationsQueryProps) =>
         `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
     }),
+    getList: builder.query({
+      query: ({ listName, accountId, sessionId, page }) =>
+        `/account/${accountId}/${listName}?api_key=${tmdbApiKey}&session_id=${sessionId}&page=${page}`,
+    }),
     // * GET ACTORS DETAIL
     getActors: builder.query({
       query: (id: string | undefined) => `person/${id}?api_key=${tmdbApiKey}`,
     }),
     // * GET ACTORS MOVIE DETAIL
     getMovieByActor: builder.query({
-      query: ({ id, page }: {id: string | undefined, page: number}) =>
+      query: ({ id, page }: { id: string | undefined; page: number }) =>
         `discover/movie?with_cast=${id}&page=${page}&api_key=${tmdbApiKey}`,
     }),
   }),
@@ -72,4 +77,5 @@ export const {
   useGetRecommendationsQuery,
   useGetActorsQuery,
   useGetMovieByActorQuery,
+  useGetListQuery,
 } = tmdbApi;

@@ -91,6 +91,10 @@ const useStyles = makeStyles()((theme) => {
       height: "8em",
       objectFit: "cover",
       borderRadius: "10px",
+      transition: "all 0.4s",
+      "&:hover": {
+        opacity: "0.8",
+      },
     },
     buttonsContainer: {
       display: "flex",

@@ -1,5 +1,5 @@
 export interface IAuthInitialState {
-  user?: Partial<IAuthPayloadProps>;
+  user?: Partial<IAuthPayloadProps> | undefined;
   isAuthenticated?: boolean;
   sessionId?: string | null;
 }

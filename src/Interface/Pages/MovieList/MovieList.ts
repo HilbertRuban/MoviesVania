@@ -23,4 +23,5 @@ export interface IMoviesProps {
     total_results: number;
   };
   numberOfMovies?: number;
+  title?: string;
 }

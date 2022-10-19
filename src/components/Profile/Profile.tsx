@@ -1,10 +1,31 @@
 import { ExitToApp } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import { useEffect } from "react";
+import { RatedCards } from "..";
 import { useAppSelector } from "../../app/hooks";
-
+import { useGetListQuery } from "../../services/TMDB";
+import useStyles from "./styles";
 const Profile = () => {
-  const favoriteMovies = [];
+  const { user } = useAppSelector((state) => state.userReducer);
+  const { classes } = useStyles();
+  const { data: favoriteMovies, refetch: refetchFavorite } = useGetListQuery({
+    listName: "favorite/movies",
+    accountId: user?.id,
+    sessionId: localStorage.getItem("session_id"),
+    page: 1,
+  });
+  const { data: watchListMovies, refetch: refetchWatchList } = useGetListQuery({
+    listName: "watchlist/movies",
+    accountId: user?.id,
+    sessionId: localStorage.getItem("session_id"),
+    page: 1,
+  });
+
+  useEffect(() => {
+    refetchFavorite();
+    refetchWatchList();
+  }, []);
+
   const logout = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -19,12 +40,29 @@ const Profile = () => {
           Logout &nbsp; <ExitToApp />
         </Button>
       </Box>
-      {!favoriteMovies.length ? (
-        <Typography variant="h5">
-          Add favorite or watchList some movies to see them here!
-        </Typography>
+      {!favoriteMovies?.results?.length ? (
+        <>
+          <p style={{ fontSize: "22px" }}>Favorite Movies</p>
+          <Typography variant="h5" className={classes.emptyList}>
+            No movies are available in your FavoriteList
+          </Typography>
+        </>
       ) : (
-        <Box>Favorite Movies</Box>
+        <Box>
+          <RatedCards title="Favorite Movies" movies={favoriteMovies} />
+        </Box>
+      )}
+      {!watchListMovies?.results?.length ? (
+        <>
+          <p style={{ fontSize: "22px" }}>Watchlist</p>
+          <Typography variant="h5" className={classes.emptyList}>
+            No movies are available in your WatchList
+          </Typography>
+        </>
+      ) : (
+        <Box>
+          <RatedCards title="Watchlist" movies={watchListMovies} />
+        </Box>
       )}
     </Box>
   );

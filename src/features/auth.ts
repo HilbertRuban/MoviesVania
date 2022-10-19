@@ -20,7 +20,7 @@ const authSlice = createSlice({
       // console.log(action.payload.id,'from auth action');
       state.user = action.payload;
       state.isAuthenticated = true;
-      state.sessionId = localStorage.getItem("sessionId");
+      state.sessionId = localStorage.getItem("session_id");
 
       localStorage.setItem("accountId", action.payload.id.toString());
     },

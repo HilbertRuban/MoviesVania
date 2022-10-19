@@ -29,32 +29,89 @@ import {
   ICast,
   IMovieDetailGenre,
 } from "../../Interface/Pages/MovieDetail/MovieDetail";
+import { IMovies } from "../../Interface/Pages/MovieList/MovieList";
 import {
+  useGetListQuery,
   useGetMovieQuery,
   useGetRecommendationsQuery,
 } from "../../services/TMDB";
 // import MovieList from "../MovieList/MovieList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieList } from "..";
 import useStyles from "./styles";
 
 const MovieDetail = (): JSX.Element => {
   const { id } = useParams();
   const [open, setOpen] = useState(false);
+  const [isMovieFavorite, setIsMovieFavorite] = useState(false);
+  const [isMovieWatchList, setIsMovieWatchList] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { classes } = useStyles();
+  const { user } = useAppSelector((state) => state.userReducer);
   const { data, isFetching, error } = useGetMovieQuery(id);
   const { data: recommendations, isFetching: isRecommendationsFetching } =
     useGetRecommendationsQuery({
       list: "/recommendations",
       movie_id: id,
     });
-  const isMovieFavorite = false;
-  const isMovieWatchList = false;
+  const { data: favoriteMovies } = useGetListQuery({
+    listName: "favorite/movies",
+    accountId: user?.id,
+    sessionId: localStorage.getItem("session_id"),
+    page: 1,
+  });
+  const { data: watchListMovies } = useGetListQuery({
+    listName: "watchlist/movies",
+    accountId: user?.id,
+    sessionId: localStorage.getItem("session_id"),
+    page: 1,
+  });
 
-  const addToFavorites = () => {};
-  const addToWatchList = () => {};
+  useEffect(() => {
+    setIsMovieFavorite(
+      !!favoriteMovies?.results?.find(
+        (movie: IMovies) => movie?.id === data?.id
+      )
+    );
+  }, [favoriteMovies, data]);
+
+  useEffect(() => {
+    setIsMovieWatchList(
+      !!watchListMovies?.results?.find(
+        (movie: IMovies) => movie?.id === data?.id
+      )
+    );
+  }, [watchListMovies, data]);
+
+  const addToFavorites = async () => {
+    await axios.post(
+      `https://api.themoviedb.org/3/account/${user?.id}/favorite?api_key=${
+        process.env.REACT_APP_TMDB_KEY
+      }&session_id=${localStorage.getItem("session_id")}`,
+      {
+        media_type: "movie",
+        media_id: id,
+        favorite: !isMovieFavorite,
+      }
+    );
+
+    setIsMovieFavorite((prev) => !prev);
+  };
+  const addToWatchList = async () => {
+    await axios.post(
+      `https://api.themoviedb.org/3/account/${user?.id}/watchlist?api_key=${
+        process.env.REACT_APP_TMDB_KEY
+      }&session_id=${localStorage.getItem("session_id")}`,
+      {
+        media_type: "movie",
+        media_id: id,
+        watchList: !isMovieWatchList,
+      }
+    );
+
+    setIsMovieWatchList((prev) => !prev);
+  };
   // console.log(recommendations, "recommend");
 
   if (isFetching) {
@@ -143,7 +200,8 @@ const MovieDetail = (): JSX.Element => {
                 </Typography>
               </Box>
               <Typography variant="h6" align="center">
-                {data?.runtime}min | Language: {data?.spoken_languages[0]?.english_name}
+                {data?.runtime}min | Language:{" "}
+                {data?.spoken_languages[0]?.english_name}
               </Typography>
               <Tooltip disableTouchListener title="Watch Trailer">
                 <MovieIcon
