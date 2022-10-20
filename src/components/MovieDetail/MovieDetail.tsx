@@ -87,7 +87,7 @@ const MovieDetail = (): JSX.Element => {
   const addToFavorites = async () => {
     await axios.post(
       `https://api.themoviedb.org/3/account/${user?.id}/favorite?api_key=${
-        process.env.REACT_APP_TMDB_KEY
+        import.meta.env.VITE_REACT_APP_TMDB_KEY
       }&session_id=${localStorage.getItem("session_id")}`,
       {
         media_type: "movie",
@@ -101,7 +101,7 @@ const MovieDetail = (): JSX.Element => {
   const addToWatchList = async () => {
     await axios.post(
       `https://api.themoviedb.org/3/account/${user?.id}/watchlist?api_key=${
-        process.env.REACT_APP_TMDB_KEY
+        import.meta.env.VITE_REACT_APP_TMDB_KEY
       }&session_id=${localStorage.getItem("session_id")}`,
       {
         media_type: "movie",

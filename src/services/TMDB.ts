@@ -3,7 +3,7 @@ import {
   ITmdbGetMoviesQueryProps,
   ITmdbGetRecommendationsQueryProps,
 } from "../Interface/Pages/TmdbQuery/TmdbQuery";
-const tmdbApiKey = process.env.REACT_APP_TMDB_KEY;
+const tmdbApiKey = import.meta.env.VITE_REACT_APP_TMDB_KEY;
 
 export const tmdbApi = createApi({
   reducerPath: "tmdbApi",
