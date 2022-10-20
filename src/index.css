@@ -7,9 +7,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a5a5a5;
+  background: gray;
 }
 
 * {
   text-decoration: none;
+}
+
+body {
+  transition: all 0.5s;
 }

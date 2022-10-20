@@ -5,11 +5,11 @@ const drawerWidth = 240;
 const useStyles = makeStyles()((theme) => {
   return {
     navbar: {
-      // background: "linear-gradient(to right,#fff,#fff, #ffe6e6);",
-      backgroundColor: "#ff9999",
+      backgroundColor: theme.palette.mode === "light" ? "#FF9999" : "	#700000 ",
+      transition: "all .5s",
     },
     toolbar: {
-      // height: "50px",
+      height: "80px",
       display: "flex",
       justifyContent: "space-between",
       marginLeft: "240px",
@@ -17,6 +17,9 @@ const useStyles = makeStyles()((theme) => {
         marginLeft: 0,
         flexWrap: "wrap",
       },
+    },
+    drawerColor: {
+      transition: "all .5s",
     },
     menuButton: {
       marginRight: theme.spacing(2),

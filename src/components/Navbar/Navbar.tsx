@@ -2,7 +2,7 @@ import {
   AccountCircle,
   Brightness4,
   Brightness7,
-  Menu,
+  Menu
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -11,20 +11,23 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  useMediaQuery,
+  useMediaQuery
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, Sidebar } from "..";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Movies } from "../../components";
 import { setUser } from "../../features/auth";
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
+import { IToggleColorMode } from "../../Interface/Pages/ToggleColorMode/ToggleColorMode";
 import { createSessionId, fetchToken, moviesApi } from "../../utils";
+import { ColorModeContext } from "../../utils/ToggleColorMode";
 import useStyles from "./styles";
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const colorMode = useContext(ColorModeContext);
   const { isAuthenticated, user } = useAppSelector(
     (state) => state.userReducer
   );
@@ -77,7 +80,7 @@ const Navbar = () => {
             sx={{
               ml: 1,
             }}
-            onClick={() => {}}
+            onClick={colorMode!.toggleColorMode}
           >
             {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
@@ -118,11 +121,13 @@ const Navbar = () => {
               onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
+              className={classes.drawerColor}
             >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
             <Drawer
+            className={classes.drawerColor}
               classes={{ paper: classes.drawerPaper }}
               variant="permanent"
               open

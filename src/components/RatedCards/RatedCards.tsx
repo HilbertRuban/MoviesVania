@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { Movie } from "..";
 import {
   IRatedMovieProps,
-  IRatedMovies,
+  IRatedMovies
 } from "../../Interface/Pages/RatedCards/RatedCards";
 import useStyles from "./styles";
 

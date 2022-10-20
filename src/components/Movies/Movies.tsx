@@ -4,7 +4,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
@@ -25,7 +25,7 @@ const Movies = (): JSX.Element => {
   });
   // console.log(movies,'movies data');
   const totalPage = data?.total_page;
-  const lg = useMediaQuery(theme.breakpoints.only('lg'));
+  const lg = useMediaQuery(theme.breakpoints.only("lg"));
   const numberOfMovies = lg ? 16 : 18;
   if (isFetching) {
     return (
@@ -57,12 +57,8 @@ const Movies = (): JSX.Element => {
 
   return (
     <div>
-      <MovieList movies={data} numberOfMovies={numberOfMovies}/>
-      <Pagination
-        currentPage={page}
-        setPage={setPage}
-        totalPage={totalPage}
-      />
+      <MovieList movies={data} numberOfMovies={numberOfMovies} />
+      <Pagination currentPage={page} setPage={setPage} totalPage={totalPage} />
     </div>
   );
 };

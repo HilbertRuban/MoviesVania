@@ -22,9 +22,10 @@ const useStyles = makeStyles()((theme) => {
       opacity: "1",
       height: "300px",
       marginBottom: "10px",
-      transition: "all 0.3s",
+      transition: "all 0.5s",
       "&:hover": {
         transform: "scale(1.05)",
+        transition: 'all 0.5s',
       },
     },
     rating: {

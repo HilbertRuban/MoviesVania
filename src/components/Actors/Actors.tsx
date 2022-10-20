@@ -1,11 +1,11 @@
 import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
+import { MovieList } from "..";
 import {
   useGetActorsQuery,
   useGetMovieByActorQuery,
 } from "../../services/TMDB";
-import {MovieList} from '..'
 import useStyles from "./styles";
 
 const Actors = () => {
@@ -86,7 +86,7 @@ const Actors = () => {
         <Typography variant="h2" align="center" gutterBottom>
           Movies
         </Typography>
-        {actorMovies && <MovieList movies={actorMovies} numberOfMovies={12}/>}
+        {actorMovies && <MovieList movies={actorMovies} numberOfMovies={12} />}
       </Box>
     </>
   );

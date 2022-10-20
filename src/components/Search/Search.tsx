@@ -10,11 +10,12 @@ const Search = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const { classes } = useStyles();
-  const handleKeyPress = (e: React.KeyboardEventHandler<HTMLDivElement>): void => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLElement>) => {
     // console.log(e.key,'eeeeeeeee');
     if(e.key === 'Enter') {
       dispatch(searchMovie(query))
     }
+    return;
   };
   if (location.pathname !== '/') return null;
   return (
@@ -24,6 +25,7 @@ const Search = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         variant="standard"
+        placeholder="Search Movie"
         InputProps={{
           className: classes.input,
           startAdornment: (

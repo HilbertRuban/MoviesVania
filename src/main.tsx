@@ -5,19 +5,18 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
 import "./index.css";
+import ToggleColorMode from "./utils/ToggleColorMode";
 
-import store from './app/store';
-
-const theme = createTheme({});
+import store from "./app/store";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ToggleColorMode>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </ThemeProvider>
+      </ToggleColorMode>
     </Provider>
   </React.StrictMode>
 );
