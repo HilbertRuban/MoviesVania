@@ -19,6 +19,7 @@ import useStyles from "./styles";
 
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 
+import { useEffect } from "react";
 import { useGetGenresQuery } from "../../services/TMDB";
 
 const redLogo =
@@ -28,6 +29,11 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
   const { genreIdOrCategoryName } = useAppSelector(
     (state) => state.genreOrCategoryReducer
   );
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
+
   const theme = useTheme();
   const { classes } = useStyles();
   const { data, isFetching } = useGetGenresQuery({});
@@ -46,7 +52,6 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
           <Link key={value} className={classes.links} to="/">
             <ListItem
               onClick={() => {
-                console.log("clicked");
                 dispatch(selectGenreOrCategory(value));
               }}
               button

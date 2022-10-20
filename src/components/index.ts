@@ -1,4 +1,5 @@
 export { default as Actors } from "./Actors/Actors";
+export { default as FeaturedMovie } from "./FeaturedMovie/FeaturedMovie";
 export { default as Movie } from "./Movie/Movie";
 export { default as MovieDetail } from "./MovieDetail/MovieDetail";
 export { default as MovieList } from "./MovieList/MovieList";

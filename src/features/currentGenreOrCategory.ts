@@ -12,7 +12,6 @@ export const genreOrCategory = createSlice({
       state: InitialStateProps,
       action: PayloadAction<string | number>
     ) => {
-      console.log(1,'step in reducer');
       state.genreIdOrCategoryName = action.payload;
       state.searchQuery = "";
     },

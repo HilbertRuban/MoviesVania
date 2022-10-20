@@ -1,6 +1,7 @@
 export interface IMovies {
   adult?: boolean;
   backdrop?: string;
+  backdrop_path?: string;
   genre_ids?: number[];
   id?: number;
   original_language?: string;
@@ -24,4 +25,5 @@ export interface IMoviesProps {
   };
   numberOfMovies?: number;
   title?: string;
+  excludeFirst?: boolean;
 }

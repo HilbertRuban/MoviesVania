@@ -6,9 +6,9 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {  useAppSelector } from "../../app/hooks";
 
-import { MovieList, Pagination } from "..";
+import { MovieList, Pagination, FeaturedMovie } from "..";
 import { useGetMoviesQuery } from "../../services/TMDB";
 
 const Movies = (): JSX.Element => {
@@ -26,7 +26,7 @@ const Movies = (): JSX.Element => {
   // console.log(movies,'movies data');
   const totalPage = data?.total_page;
   const lg = useMediaQuery(theme.breakpoints.only("lg"));
-  const numberOfMovies = lg ? 16 : 18;
+  const numberOfMovies = lg ? 17 : 19;
   if (isFetching) {
     return (
       <Box display="flex" justifyContent="center">
@@ -57,7 +57,8 @@ const Movies = (): JSX.Element => {
 
   return (
     <div>
-      <MovieList movies={data} numberOfMovies={numberOfMovies} />
+      <FeaturedMovie movies={data}/>
+      <MovieList movies={data} numberOfMovies={numberOfMovies} excludeFirst/>
       <Pagination currentPage={page} setPage={setPage} totalPage={totalPage} />
     </div>
   );
