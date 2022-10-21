@@ -43,11 +43,35 @@ const useStyles = makeStyles()((theme) => {
     buttonFW: {
       [theme.breakpoints.down("md")]: {
         position: "relative",
-        top: "290px",
+        top: "240px",
       },
       [theme.breakpoints.down("sm")]: {
         position: "relative",
         top: "350px",
+      },
+      [theme.breakpoints.down(550)]: {
+        position: "relative",
+        top: "265px",
+      },
+      [theme.breakpoints.down(450)]: {
+        position: "relative",
+        top: "280px",
+      },
+      [theme.breakpoints.down(400)]: {
+        position: "relative",
+        top: "340px",
+      },
+      [theme.breakpoints.down(490)]: {
+        position: "relative",
+        top: "280px",
+      },
+      [theme.breakpoints.down(380)]: {
+        position: "relative",
+        top: "340px",
+      },
+      [theme.breakpoints.down(300)]: {
+        position: "relative",
+        top: "420px",
       },
     },
     movieTitle: {
