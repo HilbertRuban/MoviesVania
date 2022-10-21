@@ -1,6 +1,5 @@
 import { Grid, Grow, Rating, Tooltip, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 import { IMovieProps } from "../../Interface/Pages/Movie/Movie";
 
 import useStyles from "./styles";
