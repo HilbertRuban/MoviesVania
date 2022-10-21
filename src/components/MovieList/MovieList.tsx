@@ -3,7 +3,7 @@ import { Movie } from "..";
 import { IMovieRecommendations } from "../../Interface/Pages/MovieDetail/MovieRecommendations";
 import {
   IMovies,
-  IMoviesProps,
+  IMoviesProps
 } from "../../Interface/Pages/MovieList/MovieList";
 import useStyles from "./styles";
 

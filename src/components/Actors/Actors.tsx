@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { MovieList } from "..";
 import {
   useGetActorsQuery,
-  useGetMovieByActorQuery,
+  useGetMovieByActorQuery
 } from "../../services/TMDB";
 import useStyles from "./styles";
 

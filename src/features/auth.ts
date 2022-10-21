@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  IAuthInitialState,
-  IAuthPayloadProps,
+    IAuthInitialState,
+    IAuthPayloadProps
 } from "../Interface/Pages/Auth/Auth";
 const initialState: IAuthInitialState = {
   user: {},

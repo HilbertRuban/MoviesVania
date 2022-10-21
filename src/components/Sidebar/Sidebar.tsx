@@ -17,7 +17,10 @@ import { categories } from "../../constants/constants";
 import { ISidebarProps } from "../../Interface/Pages/Sidebar/Sidebar";
 import useStyles from "./styles";
 
-import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
+import {
+  searchMovie,
+  selectGenreOrCategory,
+} from "../../features/currentGenreOrCategory";
 
 import { useEffect } from "react";
 import { useGetGenresQuery } from "../../services/TMDB";
@@ -25,7 +28,7 @@ import { useGetGenresQuery } from "../../services/TMDB";
 const redLogo =
   "https://fontmeme.com/permalink/221006/be5948abafa4fb7e3f0e91e946763d28.png";
 
-const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
+const Sidebar = ({ setMobileOpen, query, setQuery }: ISidebarProps) => {
   const { genreIdOrCategoryName } = useAppSelector(
     (state) => state.genreOrCategoryReducer
   );
@@ -53,6 +56,7 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
             <ListItem
               onClick={() => {
                 dispatch(selectGenreOrCategory(value));
+                setQuery("");
               }}
               button
             >
@@ -81,7 +85,10 @@ const Sidebar = ({ setMobileOpen }: ISidebarProps) => {
           data?.genres?.map(({ id, name }: { id: number; name: string }) => (
             <Link key={name} className={classes.links} to="/">
               <ListItem
-                onClick={() => dispatch(selectGenreOrCategory(id))}
+                onClick={() => {
+                  dispatch(selectGenreOrCategory(id));
+                  setQuery("");
+                }}
                 button
               >
                 <ListItemIcon>

@@ -6,9 +6,9 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
-import {  useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 
-import { MovieList, Pagination, FeaturedMovie } from "..";
+import { FeaturedMovie, MovieList, Pagination } from "..";
 import { useGetMoviesQuery } from "../../services/TMDB";
 
 const Movies = (): JSX.Element => {
@@ -57,8 +57,8 @@ const Movies = (): JSX.Element => {
 
   return (
     <div>
-      <FeaturedMovie movies={data}/>
-      <MovieList movies={data} numberOfMovies={numberOfMovies} excludeFirst/>
+      <FeaturedMovie movies={data} />
+      <MovieList movies={data} numberOfMovies={numberOfMovies} excludeFirst />
       <Pagination currentPage={page} setPage={setPage} totalPage={totalPage} />
     </div>
   );

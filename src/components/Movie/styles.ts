@@ -25,7 +25,7 @@ const useStyles = makeStyles()((theme) => {
       transition: "all 0.5s",
       "&:hover": {
         transform: "scale(1.05)",
-        transition: 'all 0.5s',
+        transition: "all 0.5s",
       },
     },
     rating: {

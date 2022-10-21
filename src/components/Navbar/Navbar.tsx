@@ -2,7 +2,7 @@ import {
   AccountCircle,
   Brightness4,
   Brightness7,
-  Menu
+  Menu,
 } from "@mui/icons-material";
 import {
   AppBar,
@@ -11,7 +11,7 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  useMediaQuery
+  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useContext, useEffect, useState } from "react";
@@ -27,6 +27,7 @@ import { ColorModeContext } from "../../utils/ToggleColorMode";
 import useStyles from "./styles";
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const colorMode = useContext(ColorModeContext);
   const { isAuthenticated, user } = useAppSelector(
     (state) => state.userReducer
@@ -84,7 +85,7 @@ const Navbar = () => {
           >
             {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          {!isMobile && <Search />}
+          {!isMobile && <Search query={query} setQuery={setQuery} />}
           <div>
             {!isAuthenticated ? (
               <Button color="inherit" onClick={fetchToken}>
@@ -110,7 +111,7 @@ const Navbar = () => {
               </Button>
             )}
           </div>
-          {isMobile && <Search />}
+          {isMobile && <Search query={query} setQuery={setQuery} />}
         </Toolbar>
       </AppBar>
       <div>
@@ -123,7 +124,11 @@ const Navbar = () => {
               ModalProps={{ keepMounted: true }}
               className={classes.drawerColor}
             >
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar
+                query={query}
+                setQuery={setQuery}
+                setMobileOpen={setMobileOpen}
+              />
             </Drawer>
           ) : (
             <Drawer
@@ -132,7 +137,11 @@ const Navbar = () => {
               variant="permanent"
               open
             >
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar
+                query={query}
+                setQuery={setQuery}
+                setMobileOpen={setMobileOpen}
+              />
             </Drawer>
           )}
         </nav>

@@ -6,7 +6,6 @@ import {
   Movie as MovieIcon,
   PlusOne,
   Remove,
-  Theaters,
 } from "@mui/icons-material";
 import {
   Box,
