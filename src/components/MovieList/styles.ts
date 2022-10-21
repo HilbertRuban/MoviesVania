@@ -5,7 +5,6 @@ const useStyles = makeStyles()((theme) => {
     moviesContainer: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-between",
       overflowX: "hidden",
       [theme.breakpoints.down("sm")]: {
         justifyContent: "center",
