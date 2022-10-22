@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   ITmdbGetMoviesQueryProps,
-  ITmdbGetRecommendationsQueryProps,
+  ITmdbGetRecommendationsQueryProps
 } from "../Interface/Pages/TmdbQuery/TmdbQuery";
 const tmdbApiKey = import.meta.env.VITE_REACT_APP_TMDB_KEY;
 
