@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hooks";
 import {
   searchMovie,
-  selectGenreOrCategory,
+  selectGenreOrCategory
 } from "../features/currentGenreOrCategory";
 import { IAlanProps, IGenre } from "../Interface/Pages/Alan/Alan";
 import { fetchToken } from "../utils";

@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import {
   IMovies,
-  IMoviesProps,
+  IMoviesProps
 } from "../../Interface/Pages/MovieList/MovieList";
 import useStyles from "./styles";
 const FeaturedMovie = ({ movies }: IMoviesProps) => {

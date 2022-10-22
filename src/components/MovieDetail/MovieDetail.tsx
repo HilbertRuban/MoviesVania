@@ -5,7 +5,7 @@ import {
   Language,
   Movie as MovieIcon,
   PlusOne,
-  Remove,
+  Remove
 } from "@mui/icons-material";
 import {
   Box,
@@ -17,7 +17,7 @@ import {
   Rating,
   Tooltip,
   Typography,
-  useMediaQuery,
+  useMediaQuery
 } from "@mui/material";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -26,13 +26,13 @@ import { genreIcons } from "../../assets/genres";
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 import {
   ICast,
-  IMovieDetailGenre,
+  IMovieDetailGenre
 } from "../../Interface/Pages/MovieDetail/MovieDetail";
 import { IMovies } from "../../Interface/Pages/MovieList/MovieList";
 import {
   useGetListQuery,
   useGetMovieQuery,
-  useGetRecommendationsQuery,
+  useGetRecommendationsQuery
 } from "../../services/TMDB";
 // import MovieList from "../MovieList/MovieList";
 import { useEffect, useState } from "react";

@@ -2,7 +2,7 @@ import {
   Box,
   CircularProgress,
   Typography,
-  useMediaQuery,
+  useMediaQuery
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
