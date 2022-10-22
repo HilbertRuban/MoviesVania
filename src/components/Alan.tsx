@@ -6,7 +6,7 @@ import {
   searchMovie,
   selectGenreOrCategory,
 } from "../features/currentGenreOrCategory";
-import { IAlanProps } from "../Interface/Pages/Alan/Alan";
+import { IAlanProps, IGenre } from "../Interface/Pages/Alan/Alan";
 import { fetchToken } from "../utils";
 import { ColorModeContext } from "../utils/ToggleColorMode";
 const useAlan = () => {
@@ -18,14 +18,15 @@ const useAlan = () => {
       key: "45cd65773dcd58823c340462e17baa6d2e956eca572e1d8b807a3e2338fdd0dc/stage",
       onCommand: ({
         command,
-        mode,
         genres,
+        mode,
         genreOrCategory,
         query,
       }: IAlanProps): void => {
         if (command === "chooseGenre") {
           const foundGenre = genres.find(
-            (g) => g.name.toLowerCase() === genreOrCategory.toLowerCase()
+            (g: IGenre) =>
+              g.name.toLowerCase() === genreOrCategory.toLowerCase()
           );
           if (foundGenre) {
             navigate("/");

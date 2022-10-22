@@ -1,12 +1,8 @@
-export type IAlanProps = {
-  command: string;
-  mode: string;
-  genres: IGenres[];
-  genreOrCategory: string;
-  query: string;
-};
+export interface IAlanProps {
+  [key: string]: any;
+}
 
-export type IGenres = {
+export interface IGenre {
   id: number;
   name: string;
-};
+}
