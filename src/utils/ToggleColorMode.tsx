@@ -21,6 +21,7 @@ const ToggleColorMode = ({ children }: IToggleColorModeChildrenProps) => {
     () =>
       createTheme({
         palette: {
+          // @ts-ignore
           mode,
         },
       }),
