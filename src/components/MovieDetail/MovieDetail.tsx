@@ -105,7 +105,7 @@ const MovieDetail = (): JSX.Element => {
       {
         media_type: "movie",
         media_id: id,
-        watchList: !isMovieWatchList,
+        watchlist: !isMovieWatchList,
       }
     );
 
